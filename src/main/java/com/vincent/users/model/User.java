@@ -13,12 +13,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name="USER", catalog = "vincentcompany")
 public class User {
+	
+	@Id
+	@Column(name="ID")
 	private Integer id;
+	
+	@Column(name="username", unique=true, nullable=false, length=50)
 	private String username;
+	
+	@Column(name="password", nullable=false, length=100)
 	private String password;
+	
+	@Column(name="email", nullable=false, length=100)
 	private String email;
+	
+	@Column(name="active", nullable=false)
 	private boolean active;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
+	
 	public User(Integer id, String username, String password, String email, 
 			boolean active, Set<UserRole> userRole) {
 		super();
@@ -30,8 +44,7 @@ public class User {
 		this.userRole = userRole;
 	}
 	
-	@Id
-	@Column(name="ID")
+
 	public Integer getId() {
 		return id;
 	}
@@ -39,7 +52,6 @@ public class User {
 		this.id = id;
 	}
 	
-	@Column(name="username", unique=true, nullable=false, length=50)
 	public String getUsername() {
 		return username;
 	}
@@ -47,7 +59,7 @@ public class User {
 		this.username = username;
 	}
 	
-	@Column(name="password", nullable=false, length=100)
+
 	public String getPassword() {
 		return password;
 	}
@@ -55,7 +67,7 @@ public class User {
 		this.password = password;
 	}
 	
-	@Column(name="email", nullable=false, length=100)
+
 	public String getEmail() {
 		return email;
 	}
@@ -71,7 +83,7 @@ public class User {
 		this.active = active;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
+
 	public Set<UserRole> getUserRole() {
 		return userRole;
 	}

@@ -15,9 +15,20 @@ import javax.persistence.UniqueConstraint;
 @Table(name="user_role", catalog="vincentcompany",
 		uniqueConstraints = @UniqueConstraint(columnNames = {"role", "username"}))
 public class UserRole {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_role_id", unique = true, nullable = false)
 	private Integer userRoleId;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "username", nullable = false)
 	private User user;
+	
+	@Column(name="role", length = 50, nullable = false)
 	private String role;
+	
+	
 	public UserRole(Integer userRoleId, User user, String role) {
 		super();
 		this.userRoleId = userRoleId;
@@ -25,9 +36,7 @@ public class UserRole {
 		this.role = role;
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_role_id", unique = true, nullable = false)
+
 	public Integer getUserRoleId() {
 		return userRoleId;
 	}
@@ -35,8 +44,6 @@ public class UserRole {
 		this.userRoleId = userRoleId;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "username", nullable = false)
 	public User getUser() {
 		return user;
 	}
@@ -45,7 +52,7 @@ public class UserRole {
 		this.user = user;
 	}
 	
-	@Column(name="role", length = 50, nullable = false)
+
 	public String getRole() {
 		return role;
 	}
