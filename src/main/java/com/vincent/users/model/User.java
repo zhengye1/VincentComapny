@@ -11,31 +11,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER", catalog = "vincentcompany")
+@Table(name="users", catalog = "vincentcompany")
 public class User {
 	
-	@Id
-	@Column(name="ID")
 	private Integer id;
-	
-	@Column(name="username", unique=true, nullable=false, length=50)
 	private String username;
-	
-	@Column(name="password", nullable=false, length=100)
 	private String password;
-	
-	@Column(name="email", nullable=false, length=100)
 	private String email;
-	
-	@Column(name="active", nullable=false)
 	private boolean active;
-	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 	
 	public User(Integer id, String username, String password, String email, 
 			boolean active, Set<UserRole> userRole) {
-		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -44,32 +31,34 @@ public class User {
 		this.userRole = userRole;
 	}
 	
-
+	@Id
+	@Column(name="ID")
 	public Integer getId() {
-		return id;
+		return this.id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
 	
+	@Column(name="username", unique=true, nullable=false, length=50)
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
 	
-
+	@Column(name="password", nullable=false, length=100)
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-
+	@Column(name="email", nullable=false, length=100)
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
@@ -77,15 +66,15 @@ public class User {
 	
 	@Column(name="active", nullable=false)
 	public boolean isActive() {
-		return active;
+		return this.active;
 	}
 	public void setActive(boolean active) {
 		this.active = active;
 	}
 	
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="user")
 	public Set<UserRole> getUserRole() {
-		return userRole;
+		return this.userRole;
 	}
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;

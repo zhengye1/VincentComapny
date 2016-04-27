@@ -4,11 +4,11 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import com.vincent.config.AppConfig;
 
-public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {AppConfig.class};
+		return new Class[] { AppConfig.class };
 	}
 
 	@Override
